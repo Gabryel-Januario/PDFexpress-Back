@@ -2,3 +2,4 @@ flask
 pillow
 fpdf
 python-docx
+pywin32
