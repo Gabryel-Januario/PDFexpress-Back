@@ -1,7 +1,7 @@
 import os
 from fpdf import FPDF
 
-def text_to_pdf(input_path, output_path):
+def txt_to_pdf(input_path, output_path):
 
     if not os.path.exists(input_path):
         raise FileNotFoundError(f'The file {input_path} not found.')

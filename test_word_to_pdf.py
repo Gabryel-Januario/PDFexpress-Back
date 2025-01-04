@@ -1,5 +1,5 @@
 import os 
-from app.converters.word_to_pdf import word_to_pdf
+from app.converters.docx_to_pdf import docx_to_pdf
 
 def test_word_to_pdf():
 
@@ -7,7 +7,7 @@ def test_word_to_pdf():
     output_path = os.path.abspath('converted/doc.pdf')
 
     try:
-        result = word_to_pdf(file_path, output_path)
+        result = docx_to_pdf(file_path, output_path)
         print(f"Word document successfully converted to PDF: {result}")
     except Exception as e:
         print(f'error: {e}')

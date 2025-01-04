@@ -1,7 +1,7 @@
 import os 
 import win32com.client
 
-def word_to_pdf(input_path, output_path):
+def docx_to_pdf(input_path, output_path):
 
 
     if not os.path.exists(input_path):
