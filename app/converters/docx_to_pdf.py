@@ -1,9 +1,11 @@
 import os 
 import win32com.client
+import pythoncom
 
 from app.utils import check_file_exists, get_file_extension
 
 def docx_to_pdf(input_path, output_path):
+    pythoncom.CoInitialize()
 
     check_file_exists(input_path)
     

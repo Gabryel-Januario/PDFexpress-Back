@@ -2,8 +2,11 @@ import os
 import win32com.client
 from app.utils import check_file_exists, get_file_extension
 from flask import jsonify
+import pythoncom
 
 def xlsx_to_pdf(input_path, output_path):
+    pythoncom.CoInitialize()
+
     check_file_exists(input_path)
     
     if get_file_extension(output_path).lower() != ".pdf":
