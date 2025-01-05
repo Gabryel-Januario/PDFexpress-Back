@@ -2,12 +2,16 @@ from PIL import Image
 from fpdf import FPDF
 import os
 
-def image_to_pdf(image_path, output_pdf_path):
+from app.utils import check_file_exists, get_file_extension
+
+def image_to_pdf(input_path, output_path):
    
-    if not os.path.exists(image_path):
-        raise FileNotFoundError(f"The file {image_path} not found")
+    check_file_exists(input_path)
     
-    image = Image.open(image_path)
+    if get_file_extension(output_path).lower() != ".pdf":
+        raise ValueError("The output file must have a .pdf extension")
+    
+    image = Image.open(input_path)
     
     pdf = FPDF()
 
@@ -26,8 +30,8 @@ def image_to_pdf(image_path, output_pdf_path):
 
     pdf.image(temp_image_path, 0, 0, pdf_width, pdf_height)
 
-    pdf.output(output_pdf_path)
+    pdf.output(output_path)
 
     os.remove(temp_image_path)
 
-    return output_pdf_path
+    return output_path

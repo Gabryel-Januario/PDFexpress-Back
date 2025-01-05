@@ -1,13 +1,14 @@
 import os
 from fpdf import FPDF
+from app.utils import check_file_exists, get_file_extension
+
 
 def txt_to_pdf(input_path, output_path):
 
-    if not os.path.exists(input_path):
-        raise FileNotFoundError(f'The file {input_path} not found.')
+    check_file_exists(input_path)
     
-    if not output_path.lower().endswith('.pdf'):
-        raise ValueError("the output file must have a .pdf extension")
+    if get_file_extension(output_path).lower() != ".pdf":
+        raise ValueError("The output file must have a .pdf extension")
 
 
     pdf = FPDF()
