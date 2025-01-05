@@ -1,5 +1,6 @@
 from flask import Flask
 import os 
+from app.routes import init_app
 
 app = Flask(__name__)
 
@@ -13,8 +14,7 @@ app.config["UPLOAD_FOLDER"] = UPLOADS_FOLDER
 app.config["CONVERTED_FOLDER"] = CONVERTED_FOLDER
 
 
-from routes import api
-app.register_blueprint(api, url_prefix="/files")
+init_app(app)
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
-from flask import Blueprint
+from flask import Flask
+from .upload import upload_bp
 
-api = Blueprint("api", __name__)
-
-from . import upload
+def init_app(app: Flask):
+    app.register_blueprint(upload_bp, url_prefix='/api')

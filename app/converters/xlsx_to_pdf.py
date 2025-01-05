@@ -1,6 +1,7 @@
 import os 
 import win32com.client
 from app.utils import check_file_exists, get_file_extension
+from flask import jsonify
 
 def xlsx_to_pdf(input_path, output_path):
     check_file_exists(input_path)
@@ -22,9 +23,8 @@ def xlsx_to_pdf(input_path, output_path):
         wb.close(SaveChanges=False)
 
     except Exception as e:
-        print(f"An error occurred: {e}")
+        return jsonify({"error": str(e)}),500
     finally:
-        
         excel.Quit()
 
     return output_path
