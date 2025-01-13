@@ -1,8 +1,12 @@
 from flask import Flask
 import os 
 from app.routes import init_app
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+
+CORS(app)
 
 UPLOADS_FOLDER = os.path.join(os.getcwd(), "uploads")
 CONVERTED_FOLDER = os.path.join(os.getcwd(), "converted")
