@@ -12,6 +12,8 @@ def download_file(filename):
     file_path = os.path.join(converted_folder, filename)
     
     if not os.path.exists(file_path):
+        current_app.logger.error(f"File not found: {file_path}")
         return jsonify({"error": "File not found"}), 404
-
+    
+    current_app.logger.info(f"Enviando arquivo: {file_path}")
     return send_from_directory(directory=converted_folder, path=filename, as_attachment=True)
