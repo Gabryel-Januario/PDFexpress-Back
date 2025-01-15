@@ -16,7 +16,7 @@ def upload():
     if method == "docx_to_pdf":
         allowed_extensions = ['.docx']
     elif method == "image_to_pdf":
-        allowed_extensions = ['.jpg', '.jpeg', '.png']
+        allowed_extensions = ['.jpg', '.jpeg', '.png', '.webp']
     elif method == "xlsx_to_pdf":
         allowed_extensions = ['.xlsx']
     elif method == "txt_to_pdf":
