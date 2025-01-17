@@ -1,10 +1,8 @@
-import os 
+import os
 import win32com.client
 from app.utils import check_file_exists, get_file_extension
 from flask import jsonify
 import pythoncom
-import time
-
 
 
 def xlsx_to_pdf(input_path, output_path):
@@ -14,35 +12,45 @@ def xlsx_to_pdf(input_path, output_path):
         raise ValueError("Temporary Excel files cannot be converted.")
 
     check_file_exists(input_path)
-    
+
     if get_file_extension(output_path).lower() != ".pdf":
         raise ValueError("The output file must have a .pdf extension")
 
     excel = win32com.client.Dispatch("Excel.Application")
     excel.Visible = False
-    excel.DisplayAlerts = False 
+    excel.DisplayAlerts = False
 
     try:
+        print("Abrindo o arquivo no Excel...")
         wb = excel.Workbooks.Open(input_path)
 
+        print("Configurando as páginas...")
         for ws in wb.Sheets:
-            ws.PageSetup.Orientation = 2
+            try:
+                ws.PageSetup.Orientation = 2 # Orientação paisagem
+                ws.PageSetup.Zoom = False  # Desativa zoom automático
+                ws.PageSetup.FitToPagesWide = 1  # Ajusta para caber em uma página de largura
+                ws.PageSetup.FitToPagesTall = False  # Permite altura flexível
+            except Exception as e:
+                print(f"Erro ao configurar a página: {str(e)}")
+                raise e
 
+        print("Exportando para PDF...")
         wb.ExportAsFixedFormat(0, output_path)
-
-        wb.close(SaveChanges=False)
+        wb.Close(SaveChanges=False)
 
     except Exception as e:
-        return jsonify({"error": str(e)}),500
+        print(f"Erro durante a conversão: {str(e)}")
+        raise e
+
     finally:
         try:
-            # Fechar o Excel, garantir que todos os objetos COM sejam descartados
-            wb = None  # Elimina o objeto Workbook
-            excel.Quit()  # Tenta fechar a aplicação Excel
-           
-            
-            pythoncom.CoUninitialize()  # Libera o COM
+            print("Fechando Excel...")
+            wb = None
+            excel.Quit()
+            pythoncom.CoUninitialize()
         except Exception as e:
-            print(f"Erro ao tentar fechar o Excel: {str(e)}")
+            print(f"Erro ao liberar recursos: {str(e)}")
 
+    print("Conversão concluída com sucesso.")
     return output_path
