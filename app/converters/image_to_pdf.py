@@ -25,7 +25,7 @@ def image_to_pdf(input_path, output_path):
     new_width = image_width * scale
     new_height = image_height * scale
     
-    # Calculate position to center the image on the page
+    
     x_offset = (pdf_width - new_width) / 2
     y_offset = (pdf_height - new_height) / 2
 
