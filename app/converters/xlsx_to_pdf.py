@@ -21,36 +21,43 @@ def xlsx_to_pdf(input_path, output_path):
     excel.DisplayAlerts = False
 
     try:
-        print("Abrindo o arquivo no Excel...")
+        
         wb = excel.Workbooks.Open(input_path)
 
-        print("Configurando as páginas...")
+        
         for ws in wb.Sheets:
             try:
-                ws.PageSetup.Orientation = 2 # Orientação paisagem
-                ws.PageSetup.Zoom = False  # Desativa zoom automático
-                ws.PageSetup.FitToPagesWide = 1  # Ajusta para caber em uma página de largura
-                ws.PageSetup.FitToPagesTall = False  # Permite altura flexível
+
+                used_range = ws.UsedRange
+                total_columns = used_range.Columns.Count
+                total_rows = used_range.Rows.Count
+
+                if total_columns > total_rows:
+                    ws.PageSetup.Orientation = 2  
+                else:
+                    ws.PageSetup.Orientation = 1  
+
+                ws.PageSetup.Zoom = False  
+                ws.PageSetup.FitToPagesWide = 1  
+                ws.PageSetup.FitToPagesTall = False  
             except Exception as e:
-                print(f"Erro ao configurar a página: {str(e)}")
+                
                 raise e
 
-        print("Exportando para PDF...")
+        
         wb.ExportAsFixedFormat(0, output_path)
         wb.Close(SaveChanges=False)
 
     except Exception as e:
-        print(f"Erro durante a conversão: {str(e)}")
+        
         raise e
 
     finally:
-        try:
-            print("Fechando Excel...")
-            wb = None
-            excel.Quit()
-            pythoncom.CoUninitialize()
-        except Exception as e:
-            print(f"Erro ao liberar recursos: {str(e)}")
+         
+        wb = None
+        excel.Quit()
+        pythoncom.CoUninitialize()
+        
 
-    print("Conversão concluída com sucesso.")
+    
     return output_path
