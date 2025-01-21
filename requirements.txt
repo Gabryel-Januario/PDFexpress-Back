@@ -3,4 +3,3 @@ pillow
 fpdf
 python-docx
 pywin32
-psutil
