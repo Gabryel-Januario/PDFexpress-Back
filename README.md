@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-    <b>File Converter API é uma API desenvolvida com Flask que permite o upload e a conversão de arquivos para o formato PDF. Suporta a conversão de documentos DOCX, imagens, arquivos de texto (TXT) e planilhas (XLSX) para PDF de forma eficiente e automatizada. Ideal para aplicações que necessitam de conversão rápida e prática de arquivos..</b>
+    <b>PDF express API é uma API desenvolvida com Flask que permite o upload e a conversão de arquivos para o formato PDF. Suporta a conversão de documentos DOCX, imagens, arquivos de texto (TXT) e planilhas (XLSX) para PDF de forma eficiente e automatizada. Ideal para aplicações que necessitam de conversão rápida e prática de arquivos..</b>
 </p>
 
 <h2 id="technologies">💻 Technologies</h2>
