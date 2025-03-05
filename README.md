@@ -1,56 +1,74 @@
-# Simple File Conversion API
+<h1 align="center" style="font-weight: bold;">PDFexpress 📄</h1>
 
-Este projeto é uma API construída com Flask que permite o upload e conversão de arquivos em diferentes formatos, como:
+<p align="center">
+ <a href="#tech">Tecnologias</a> • 
+ <a href="#started">Getting Started</a> • 
+  <a href="#routes">API Endpoints</a> •
+ <a href="#colab">Collaborators</a> •
+ <a href="#contribute">Contribute</a>
+</p>
 
-- DOCX para PDF
-- Imagens para PDF
-- TXT para PDF
-- XLSX para PDF
+<p align="center">
+    <b>File Converter API é uma API desenvolvida com Flask que permite o upload e a conversão de arquivos para o formato PDF. Suporta a conversão de documentos DOCX, imagens, arquivos de texto (TXT) e planilhas (XLSX) para PDF de forma eficiente e automatizada. Ideal para aplicações que necessitam de conversão rápida e prática de arquivos..</b>
+</p>
 
-## Dependências
+<h2 id="technologies">💻 Technologies</h2>
 
-Este projeto depende das seguintes bibliotecas:
-
+- Python
 - Flask
 - Pillow
 - fpdf
 - python-docx
 - pywin32
 
-## Como usar
+<h2 id="started">🚀 Getting started</h2>
 
-### Instalar dependências
+<h3>Pré-requisitos</h3>
 
-Para instalar as dependências do projeto, você pode usar o seguinte comando:
+- Python
+- Poetry
+
+<h3>Cloning</h3>
+
+```bash
+git clone https://github.com/Gabryel-Januario/PDFexpress-Back
+```
 
 
+<h3>Starting</h3>
+
+```bash
+cd project-name
 pip install -r requirements.txt
-
-Executar o servidor
-Para executar o servidor, basta rodar o arquivo principal da aplicação:
-
 python app.py
-O servidor será iniciado em http://127.0.0.1:5000.
+```
 
-Endpoints disponíveis
-POST /upload: Faz o upload de um arquivo para o servidor.
+<h2 id="routes">📍 API Endpoints</h2>
 
-Parâmetros:
-file: O arquivo a ser enviado.
-method: O método de conversão (docx_to_pdf, image_to_pdf, xlsx_to_pdf, txt_to_pdf).
-
-POST /convert: Converte o arquivo enviado para o formato PDF.
-
-Parâmetros:
-filename: O nome do arquivo a ser convertido.
-method: O método de conversão.
-GET /download: Baixa o arquivo convertido em PDF.
-
-Como funciona
-O usuário envia um arquivo através do endpoint /upload.
-O arquivo é salvo no servidor e, dependendo do método selecionado (docx_to_pdf, image_to_pdf, etc.), é convertido para um arquivo PDF.
-O arquivo convertido pode ser baixado através do endpoint /download.
-Contribuições
+​
+| route               | description                                          
+|----------------------|-----------------------------------------------------
+| <kbd>POST /upload</kbd>     | Faz o upload de um arquivo para o servidor.
+| <kbd>POST /convert</kbd>     | Converte um arquivo enviado para PDF.
+| <kbd>GET /download</kbd>     | Baixa o arquivo convertido em PDF.
 
 
-Sinta-se à vontade para contribuir para o projeto fazendo um fork e criando pull requests.
+
+<h2 id="colab">🤝 Colaborador</h2>
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/161720296?s=96&v=4" width="100px;" alt="Gabryel Januario Profile Picture"/><br>
+        <sub>
+          <b>Gabryel Januario</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+<h2 id="contribute">📫 Contribute</h2>
+
+Sinta-se à vontade para abrir issues e pull requests para melhorias!
